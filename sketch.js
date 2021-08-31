@@ -202,7 +202,7 @@ function spawnObstacles() {
 function reset(){
     gameState = PLAY
     restart.visible= false
-    kangaroo.setAnimation("running", kangaroo_running);
+    kangaroo.changeAnimation("running", kangaroo_running);
     shrubsGroup.destroyEach();
     obstaclesGroup.destroyEach();
 }
