@@ -109,7 +109,9 @@ function draw() {
     jungle.velocityX = 0;
     obstaclesGroup.setVelocityXEach(0);
     shrubsGroup.setVelocityXEach(0);
-    
+    if(mousePressedOver(restart)){
+      reset();
+    }
     textSize(20)
     stroke(3)
     fill("black");
@@ -198,11 +200,9 @@ function spawnObstacles() {
   }
 }
 function reset(){
-  if(mousePressedOver(restart)){
-    gameState= PLAY
+    gameState = PLAY
     restart.visible= false
     kangaroo.setAnimation("running", kangaroo_running);
     shrubsGroup.destroyEach();
     obstaclesGroup.destroyEach();
-  }
 }
