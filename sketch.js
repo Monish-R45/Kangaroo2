@@ -205,4 +205,6 @@ function reset(){
     kangaroo.changeAnimation("running", kangaroo_running);
     shrubsGroup.destroyEach();
     obstaclesGroup.destroyEach();
+    jungle.velocityX = 0
+    
 }
