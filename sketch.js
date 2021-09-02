@@ -109,21 +109,21 @@ function draw() {
     jungle.velocityX = 0;
     obstaclesGroup.setVelocityXEach(0);
     shrubsGroup.setVelocityXEach(0);
-    if(mousePressedOver(restart)){
-      reset();
-    }
     textSize(20)
     stroke(3)
     fill("black");
     text("Game Over!", 400 ,100) 
-    restart.visible= true  
-    reset();
-    //change the trex animation
+    restart.visible= true 
     kangaroo.changeAnimation("collided",kangaroo_collided);
     
     //set lifetime of the game objects so that they are never destroyed
     obstaclesGroup.setLifetimeEach(-1);
     shrubsGroup.setLifetimeEach(-1);
+    
+    if(mousePressedOver(restart)){
+      reset();
+    }
+    //change the trex animation
     
   }else if (gameState === WIN) {
     //set velcity of each game object to 0
@@ -203,8 +203,8 @@ function reset(){
     gameState = PLAY
     restart.visible= false
     kangaroo.changeAnimation("running", kangaroo_running);
-    shrubsGroup.setLifetimeEach(-1);
-    obstaclesGroup.setLifetimeEach(-1);
+    shrubsGroup.destroyEach(-1);
+    obstaclesGroup.destroyEach(-1);
     jungle.velocityX = 0;
     score = 0;
   
