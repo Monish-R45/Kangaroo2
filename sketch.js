@@ -39,7 +39,7 @@ function setup() {
   kangaroo.addAnimation("collided", kangaroo_collided);
   kangaroo.scale = 0.15;
   kangaroo.setCollider("circle",0,0,300)
-  kangaroo.debug=true;
+  kangaroo.debug=false;
     
   invisibleGround = createSprite(400,350,1600,10);
   invisibleGround.visible = false;
@@ -203,8 +203,10 @@ function reset(){
     gameState = PLAY
     restart.visible= false
     kangaroo.changeAnimation("running", kangaroo_running);
-    shrubsGroup.destroyEach();
-    obstaclesGroup.destroyEach();
-    jungle.velocityX = 0
+    shrubsGroup.setLifetimeEach(-1);
+    obstaclesGroup.setLifetimeEach(-1);
+    jungle.velocityX = 0;
+    score = 0;
+  
     
 }
