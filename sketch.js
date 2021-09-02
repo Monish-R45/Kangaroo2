@@ -61,10 +61,7 @@ function draw() {
   background(255);
   
   kangaroo.x=camera.position.x-270;
-  textSize(20)
-  stroke(3)
-  fill("black");
-  text("Score:"+score, camera.position.x,50)   
+    
   if (gameState===PLAY){
 
     jungle.velocityX=-3
@@ -73,7 +70,7 @@ function draw() {
     {
        jungle.x=400
     }
-   console.log(kangaroo.y)
+  // console.log(kangaroo.y)
     if(keyDown("space")&& kangaroo.y>270) {
       jumpSound.play();
       kangaroo.velocityY = -16;
@@ -94,25 +91,19 @@ function draw() {
       score += 1
       shrubsGroup.destroyEach();
     }
-    if(score >= 5 ){
-      kangaroo.visible= false
-      textSize(30)
-      stroke(3)
-      fill("black");
-      text("Congratulations! You Win!!", 70,200)   
-      gameState = WIN
-    }
+    
   }
   else if (gameState === END) {
     //set velcity of each game object to 0
     kangaroo.velocityY = 0;
     jungle.velocityX = 0;
+    restart.x = camera.position.x
     obstaclesGroup.setVelocityXEach(0);
     shrubsGroup.setVelocityXEach(0);
-    textSize(20)
+   /*textSize(20)
     stroke(3)
     fill("black");
-    text("Game Over!", 400 ,100) 
+    text("Game Over!", 400 ,100) */
     restart.visible= true 
     kangaroo.changeAnimation("collided",kangaroo_collided);
     
@@ -131,7 +122,6 @@ function draw() {
     jungle.velocityX = 0;
     obstaclesGroup.setVelocityXEach(0);
     shrubsGroup.setVelocityXEach(0);
-    
     //change the trex animation
     kangaroo.changeAnimation("collided",kangaroo_collided);
     
@@ -145,6 +135,20 @@ function draw() {
 
   
   drawSprites();
+  
+  textSize(20)
+  stroke(3)
+  fill("black");
+  text("Score:"+score, camera.position.x,50) 
+  
+  if(score >= 5 ){
+      kangaroo.visible= false
+      textSize(30)
+      stroke(3)
+      fill("black");
+      text("Congratulations! You Win!!", 70,200)   
+      gameState = WIN
+    }
 
 
 }
@@ -202,10 +206,10 @@ function spawnObstacles() {
 function reset(){
     gameState = PLAY
     restart.visible= false
+    kangaroo.visible= true;
     kangaroo.changeAnimation("running", kangaroo_running);
-    shrubsGroup.destroyEach(-1);
-    obstaclesGroup.destroyEach(-1);
-    jungle.velocityX = 0;
+    shrubsGroup.destroyEach();
+    obstaclesGroup.destroyEach();
     score = 0;
   
     
